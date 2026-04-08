@@ -9,3 +9,16 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Loading packages
+```{r warning=F, message=F}
+library(tidyverse)
+
+```
+
+```{r}
+DATA <- read_csv("Teen_Mental_Health_Dataset.csv")
+
+DATA
+```
+
+

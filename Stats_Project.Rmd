@@ -1,0 +1,33 @@
+---
+title: "Statistical Methods Final Project"
+author: "Kyle Urban, James Joyner, Brennon"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+     code_folding: show
+     theme: flatly
+     highlight: tango
+     toc: yes
+     number_sections: yes
+     df_print: paged
+     toc_float: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Loading packages
+```{r warning=F, message=F}
+library(tidyverse)
+
+```
+
+```{r}
+DATA <- read_csv("Teen_Mental_Health_Dataset.csv")
+
+DATA
+```
+
+

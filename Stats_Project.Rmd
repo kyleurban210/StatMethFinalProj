@@ -30,5 +30,77 @@ DATA <- read_csv("Teen_Mental_Health_Dataset.csv")
 DATA
 ```
 
-#Testing 1 2 3
+## -------------------------------------------------------------
+## Heading 1
+## -------------------------------------------------------------
+
+
+
+## -------------------------------------------------------------
+## Heading 2
+## -------------------------------------------------------------
+
+
+
+## -------------------------------------------------------------
+## Heading 3
+## -------------------------------------------------------------
+
+
+
+## -------------------------------------------------------------
+## Heading 4
+## -------------------------------------------------------------
+
+#Section 4.0
+a) Population is all teenagers
+b) Sample is 1200 teenagers
+
+#Section 4.1
+a) The variable is daily hours of sleep which is Quantitative
+b) Parameter is mean number of hours asleep
+c) ?
+d) Point Estimate is 6.449417
+   Lower = 6.341972 and Upper = 6.556862
+```{r}
+DATA %>% summarise(DATA_mean = mean(sleep_hours), DATA_sd = sd(sleep_hours))
+
+t.test(x = DATA$sleep_hours, conf.level = 0.99)
+```
+e) It is recommended by doctors and health professionals that everyone should sleep for 8 hours a night to get a good nights rest. Lack of sleep can lead to multiple mental problems which can affect anyone. Do these results show a average of sleep less then 8 hours a night with a 0.05 significance level?
+```{r}
+t0 <- (6.449417 - 8)/(1.442677/sqrt(1200))
+t0
+pt(q = t0, df = 1200 - 1 )
+```
+There is sufficient evidence at $\alpha$ = 0.05 to conclude that the mean hours of sleep each night for teenagers is less then the recommended 8
+
+#Section 4.2
+a) The variable is social interaction level which is qualitative
+b) Parameter is proportion of teenagers that use instagram
+c)?
+d) Point estamte is 0.3425
+   Lower
+```{r}
+DATA %>% count(platform_usage)
+411/1200
+```
+
+
+## -------------------------------------------------------------
+## Heading 5
+## -------------------------------------------------------------
+
+
+
+## -------------------------------------------------------------
+## Heading 6
+## -------------------------------------------------------------
+
+
+
+## -------------------------------------------------------------
+## Heading 7
+## -------------------------------------------------------------
+
 

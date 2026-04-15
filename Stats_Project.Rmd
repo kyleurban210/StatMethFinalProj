@@ -285,7 +285,69 @@ Find $P(\bar{X} > 6.5)$
 ## -------------------------------------------------------------
 ## Heading 2
 ## -------------------------------------------------------------
+### 2.1 Research Objectives
 
+**Main Research Question:** Does screen time before sleep on social media platforms affect sleep hours, and does this relationship differ by gender?
+
+------------------------------------------------------------------------------
+
+#### 1. One sample confidence interval for the population proportion from the variable selected in Section 1.1.
+
+Construct a 95% confidence interval for the proportion of teens who are female.
+
+This establishes the demographic makeup of the population. Before comparing sleep patterns between genders, we need to understand the gender distribution and how confident we are in that estimate.
+
+------------------------------------------------------------------------------
+
+#### 2. One sample confidence interval for the population mean from the variable selected in Section 1.2.
+
+Construct a 95% confidence interval for the mean sleep hours of teens.
+
+This gives us a range for the true average sleep hours across all teens. Before investigating whether screen time is hurting sleep, we need a baseline estimate of how much sleep teens are actually getting.
+
+------------------------------------------------------------------------------
+
+#### 3. Formulate a research question to conduct a one-sample proportion hypothesis test based on the variable from Section 1.1.
+
+**Research Question:** Is the proportion of female teens in the population different from 50%?
+
+$H_0: p = 0.50$
+
+$H_A: p \neq 0.50$
+
+This tests whether the gender split in the population is roughly even or skewed. If the dataset is heavily skewed toward one gender, that matters when we interpret the two-sample comparison of sleep hours later.
+
+------------------------------------------------------------------------------
+
+#### 4. Formulate a research question to conduct a one sample t test hypothesis test based on the variable in Section 1.2.
+
+**Research Question:** Do teens get less than the recommended 8 hours of sleep?
+
+$H_0: \mu = 8$
+
+$H_A: \mu < 8$
+
+The CDC recommends 8-10 hours of sleep for teens. Testing whether the mean sleep hours is significantly less than 8 directly addresses the core concern of our research question. If teens are not getting enough sleep, it motivates investigating screen time as a potential cause.
+
+------------------------------------------------------------------------------
+
+#### 5. Create a research question to do two sample mean (independent t test) hypothesis tests.
+
+**Research Question:** Is there a difference in mean sleep hours between male and female teens?
+
+$H_0: \mu_1 - \mu_2 = 0$ (no difference in mean sleep hours between males and females)
+
+$H_A: \mu_1 - \mu_2 \neq 0$ (there is a difference in mean sleep hours between males and females)
+
+This directly answers the second half of the main research question: "does this relationship differ by gender?" By comparing mean sleep hours between males and females, we can determine if one gender is sleeping significantly less than the other.
+
+-------------------------------------------------------------------------------
+
+#### 6. Use two quantitative variables to show if there is a linear relationship between them.
+
+**Research Question:** Is there a linear relationship between screen time before sleep and sleep hours?
+
+This is the core of the entire research question. By fitting a regression model with screen_time_before_sleep as the explanatory variable and sleep_hours as the response variable, we can determine whether more screen time before bed predicts less sleep, how strong that relationship is, and by how much sleep changes per unit increase in screen time.
 
 
 ## -------------------------------------------------------------

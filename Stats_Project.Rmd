@@ -367,7 +367,7 @@ b) Sample is 1200 teenagers
 #Section 4.1
 a) The variable is daily hours of sleep which is Quantitative
 b) Parameter is mean number of hours asleep
-c) ?
+c) Independent
 d) Point Estimate is 6.449417
    Lower = 6.341972 and Upper = 6.556862
 ```{r}
@@ -384,21 +384,57 @@ pt(q = t0, df = 1200 - 1 )
 There is sufficient evidence at $\alpha$ = 0.05 to conclude that the mean hours of sleep each night for teenagers is less then the recommended 8
 
 #Section 4.2
-a) The variable is social interaction level which is qualitative
-b) Parameter is proportion of teenagers that use instagram
-c)?
-d) Point estamte is 0.3425
-   Lower
+a) The variable is gender which is Qualitative
+b) Parameter is the proportions of females in the study
+c) Independent
+d) Point Estimate is 48.75% 
+   Lower = 43.95% and Upper = 53.55%
 ```{r}
-DATA %>% count(platform_usage)
-411/1200
-```
+DATA %>% count(gender)
+585/1200
 
+p_hat <- 0.4875
+s_hat <- sqrt(0.4875*(1-0.4875)/1200)
+z_alpha_2 <- 1 - qnorm((1-0.98)/2, mean = 0, sd = 1)
+
+#Lower Bound
+p_hat - z_alpha_2 * s_hat
+
+#Upper Bound
+p_hat + z_alpha_2 * s_hat
+```
+e) The gender background of subjects can show trends just as much as any other qualitative variables. At 0.5 significance level, test the hypothesis that the proportion of female teenagers is less then 50%.
+```{r}
+prop.test(x = 585, n = 1200, p = 0.50, alternative = "less", correct = F)
+```
+Since p-value = 0.1932 < 0.05 = $\aplha$, we can reject $H_0$. There is sufficient evidence at $\aplha$ = 0.5 to conclude that the proportion of teenagers that were female was less the 50%
 
 ## -------------------------------------------------------------
 ## Heading 5
 ## -------------------------------------------------------------
 
+
+Quantitative Variables: **sleep_hours**
+Test female vs male sleep hours
+
+#Section 5.1
+
+We want to test if the time asleep for males is largely different time spent asleep for females. We will be testing this at the 95% confidence level with $\mu_1 - \mu_2$ representing the difference from male sleeping to female sleeping.
+a) Population 1 = all male teenagers
+   Population 2 = all female teenagers
+b) Sample 1 = 615 male teenagers
+   Sample 2 = 585 female teenagers
+c) Time asleep and gender, Time Alseep is Quantitiative while Gender is Qualitative
+d) Parameter 1 = $\mu_1$ = mean time asleep for males
+   Parameter 2 = $\mu_2$ = mean time asleep for females
+e) They are both independent
+```{r}
+DATA_male <- DATA %>% filter(gender == "male")
+DATA_female <- DATA %>% filter(gender == "female")
+
+t.test(x = DATA_male$sleep_hours, y = DATA_female$sleep_hours, alternative = "less", conf.level = 0.95)
+```
+Since 0 is in the 95% confidence interval, we fail to reject the NULL hypothesis. There is insufficient evinced using 95% confidence interval to conclude that the mean difference between male and female teenager sleeping hours is less then 0.
 
 
 ## -------------------------------------------------------------

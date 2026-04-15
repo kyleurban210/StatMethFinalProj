@@ -30,11 +30,257 @@ DATA <- read_csv("Teen_Mental_Health_Dataset.csv")
 DATA
 ```
 
+Qualitative Variables: **gender**, **platform_usage**
+
+Quantitative Variables: **sleep_hours**, **screen_time_before_sleep**
 ## -------------------------------------------------------------
 ## Heading 1
 ## -------------------------------------------------------------
 
+### Section 1.1 Qualitative Data
 
+Qualitative Variable: **gender**
+
+Success: **female**
+
+Population size: N = 1200
+
+
+------------------------------------------------------------------------------
+
+#### 1. Select one qualitative variable and use one level of the qualitative variable as success and select a sample size of at least 50.
+
+```{r}
+# Frequency Table
+DATA %>%
+  count(gender, name = 'frequency') %>%
+  mutate(rel_frequency = frequency/sum(frequency))
+```
+
+Qualitative variable = gender
+
+Success = female
+
+Sample size: n = 50
+
+Population proportion: p = 585/1200
+```{r}
+p <- 585/1200
+p
+```
+
+
+------------------------------------------------------------------------------
+
+#### 2. Show the number of successes is from binomial distribution.
+
+Let X = number of females in a random sample of n = 50 teens.
+
+**Checking Binomial Criteria:**
+
+1. The experiment is performed a fixed number of times: n = 50 (fixed).
+
+2. The trials are independent: n <= 0.05N → 50 <= 0.05 * 1200 = 60. Since 50 <= 60, the trials are independent.
+
+3. For each trial, there are two mutually exclusive outcomes: female (success) or male (failure).
+
+4. The probability of success is fixed for each trial: p = 585/1200 = 0.4875.
+
+Since all four criteria are met, X ~ Bin(n = 50, p = 0.4875).
+
+```{r}
+# n = sample size
+n <- 50
+
+# Check independence: n <= 0.05N
+n <= 0.05 * 1200
+```
+
+```{r}
+# PMF table for X ~ Bin(n = 50, p = 0.4875)
+binom_pmf <- tibble(x_female = 0:50,
+                    prob_female = dbinom(x = x_female, size = 50, prob = p))
+binom_pmf
+```
+
+```{r}
+# Graph of pmf
+binom_pmf %>%
+  ggplot(mapping = aes(x = x_female, y = prob_female)) +
+  geom_col(width = 0.01, color = "blue") +
+  geom_point(size = 1) +
+  labs(x = "Number of Females",
+       y = "Probability",
+       title = "PMF of X ~ Bin(50, 0.4875)")
+```
+
+
+------------------------------------------------------------------------------
+
+#### 3. Find the probability the random variable is more than its mean.
+
+```{r}
+# Mean: E(X) = np
+mean_x <- n * p
+mean_x
+
+# Standard Deviation: SD(X) = sqrt(np(1-p))
+sd_x <- sqrt(n * p * (1 - p))
+sd_x
+```
+
+P(X > 24.375) = P(X >= 25) = 1 - P(X <= 24)
+
+```{r}
+# Method 1: Using pbinom
+1 - pbinom(q = 24, size = 50, prob = p)
+```
+
+```{r}
+# Method 2: Summing individual probabilities
+dbinom(x = 25:50, size = 50, prob = p) %>% sum()
+```
+
+
+------------------------------------------------------------------------------
+
+#### 4. Find the sampling distribution of the sample proportion of the qualitative variable with a sample size of at least 50.
+
+$\hat{p}$ = sample proportion of females in a sample of n = 50
+
+The sampling distribution of $\hat{p}$:
+
+i) $\mu_{\hat{p}} = p = 0.4875$
+```{r}
+p
+```
+
+ii) $\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}$
+```{r}
+sqrt(p * (1 - p) / n)
+```
+
+iii) Approximately normal if:
+
+  a) Simple random sample (assumed)
+  
+  b) n <= 0.05N: 50 <= 0.05 * 1200 = 60 
+  
+  c) np(1-p) >= 10
+```{r}
+n * p * (1 - p)
+```
+
+np(1-p) = 12.49 >= 10
+
+Since the requirements hold, $\hat{p}$ is approximately normal.
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+
+### Section 1.2 Quantitative Data
+
+Quantitative Variable: **sleep_hours**
+
+
+------------------------------------------------------------------------------
+
+#### 1. Select one quantitative variable.
+
+```{r}
+DATA %>%
+  summarise(mean_sleep = mean(sleep_hours, na.rm = T),
+            sd_sleep = sd(sleep_hours, na.rm = T),
+            median_sleep = median(sleep_hours, na.rm = T),
+            IQR_sleep = IQR(sleep_hours, na.rm = T))
+```
+
+
+------------------------------------------------------------------------------
+
+#### 2. Check if the quantitative variable is from normal distribution.
+
+```{r}
+# QQ Plot
+DATA %>%
+  ggplot(mapping = aes(sample = sleep_hours)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  labs(title = "QQ Plot of Sleep Hours")
+```
+
+```{r}
+# Histogram
+DATA %>%
+  ggplot(mapping = aes(x = sleep_hours)) +
+  geom_histogram(fill = "blue", color = "black", binwidth = 0.5) +
+  labs(y = "Frequency",
+       title = "Histogram of Sleep Hours")
+```
+
+```{r}
+# Boxplot
+DATA %>%
+  ggplot(mapping = aes(x = sleep_hours)) +
+  geom_boxplot(fill = "blue", color = "black") +
+  labs(title = "Boxplot of Sleep Hours")
+```
+
+The QQ plot shows the points approximately follow the reference line. The histogram shows an approximately symmetric distribution. Based on these plots, sleep_hours is approximately normally distributed.
+
+
+------------------------------------------------------------------------------
+
+#### 3. Find the sampling distribution of the sample mean of the quantitative variable with sample size of at least 50.
+
+Population parameters (since this section assumes population data):
+```{r}
+# Population mean
+mu_x <- mean(DATA$sleep_hours)
+mu_x
+
+# Population standard deviation
+sigma_x <- sd(DATA$sleep_hours)
+sigma_x
+```
+
+Sample size: n = 50 (same as Section 1.1)
+
+The sampling distribution of $\bar{X}$:
+
+i) $\mu_{\bar{X}} = \mu_X$
+```{r}
+mu_x
+```
+
+ii) $\sigma_{\bar{X}} = \sigma_X / \sqrt{n}$
+```{r}
+sigma_x / sqrt(50)
+```
+
+iii) Normal or approximately normal if:
+
+  a) Simple random sample (assumed) YES
+  
+  b) n <= 0.05N: 50 <= 0.05 * 1200 = 60 YES
+  
+  c) n >= 30: 50 >= 30  (also sleep_hours ~ approximately Normal) YES
+
+Since the requirements hold, $\bar{X}$ is approximately normal.
+
+
+------------------------------------------------------------------------------
+
+#### 4. Find a probability of sample mean is greater than a number.
+
+Find $P(\bar{X} > 6.5)$
+
+```{r}
+# P(X_bar > 6.5) = 1 - P(X_bar <= 6.5)
+1 - pnorm(q = 6.5, mean = mu_x, sd = sigma_x / sqrt(50))
+```
 
 ## -------------------------------------------------------------
 ## Heading 2

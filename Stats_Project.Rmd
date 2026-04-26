@@ -347,6 +347,9 @@ This directly answers the second half of the main research question: "does this 
 
 **Research Question:** Is there a linear relationship between screen time before sleep and sleep hours?
 
+$H_0: \beta_1 = 0$
+$H_A: \beta_1 \neq 0$
+
 This is the core of the entire research question. By fitting a regression model with screen_time_before_sleep as the explanatory variable and sleep_hours as the response variable, we can determine whether more screen time before bed predicts less sleep, how strong that relationship is, and by how much sleep changes per unit increase in screen time.
 
 

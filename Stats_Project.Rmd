@@ -555,7 +555,7 @@ Test female vs male sleep hours
 
 #Section 5.1
 
-We want to test if the time asleep for males is largely different time spent asleep for females. We will be testing this at the 95% confidence level with $\mu_1 - \mu_2$ representing the difference from male sleeping to female sleeping.
+We want to test if the time asleep for males is largely different time spent asleep for females. We will be testing this at the 95% confidence level with $\mu_1 - \mu_2$ representing the difference. from male sleeping to female sleeping.
 a) Population 1 = all male teenagers
    Population 2 = all female teenagers
 b) Sample 1 = 615 male teenagers

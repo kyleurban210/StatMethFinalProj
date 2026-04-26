@@ -358,6 +358,56 @@ This is the core of the entire research question. By fitting a regression model 
 What to do: Use the variables from your research question in Introduction section
 
 a)Find the distribution of the two quantitative variables: center, spread and shape. 
+
+#Finding Shape
+is it symmetric or skewed? Is it bimodal or unimodal? 
+#Quantitative Variable 1: **sleep_hours**
+```{r}
+
+
+DATA %>%
+  summarise(
+    mean_val = mean(sleep_hours, na.rm = TRUE),
+    median_val = median(sleep_hours, na.rm = TRUE),
+    diff = mean_val - median_val 
+  )
+
+
+
+DATA %>%
+  summarise(
+    Shape = "Approximately Symmetric",
+    Center_Mean = mean(sleep_hours, na.rm = TRUE),
+    Spread_SD = sd(sleep_hours, na.rm = TRUE),
+  )
+
+```
+Since the difference between the mean value & the median value is near zero (diff = -0.05058333)
+We can say that the distribution of sleep hours is approximately normal
+
+
+
+```{r}
+
+#Quantitative Variable 2: **screen_time_before_sleep**
+
+
+```
+
+#Finding Center
+Mean (symmetric) or median (skewed)?
+```{r}
+
+```
+
+#Finding spread
+If symmetric, find the standard deviation
+If skewed, find the IQR.
+```{r}
+
+
+```
+
 b)Create bar graph and relative frequency table for the two categorical variables. 
 
 
@@ -446,6 +496,87 @@ Since 0 is in the 95% confidence interval, we fail to reject the NULL hypothesis
 ## -------------------------------------------------------------
 ## Heading 6
 ## -------------------------------------------------------------
+
+
+Use two quantitative variables to show if there is a linear relationship between them.
+
+
+a) What are the variables? What type of variables are they? 
+
+Quantitative Variable 1: **sleep_hours**
+Quantitative Variable 2: **screen_time_before_sleep**
+
+
+b) Run a hypothesis test to test your hypothesis.
+
+
+#Not sure if it wants me to test the original hypothesis from section 2.1 or the new hypothesis made specifically for this section? The instructions for the project do not make this clear. As such, might be safe to test both. 
+
+Hypothesis 1: Is there a linear relationship between the screen_time_before_sleep and the number of sleep hours gotten? 
+$H_0: \beta_1 = 0$
+$H_A: \beta_1 \neq 0$
+
+```{r}
+
+
+model = lm(screen_time_before_sleep ~ sleep_hours, data = DATA)
+
+#coef(model)
+summary(model)
+```
+
+P-value: 0.7232
+
+Decision: The P-value of 0.7232 is greater than alpha level of $\alpha = 0.05$. Also, the Adjusted R-squared is near zero, showing only a little of variance is a result of the dependent variable. Thus we fail to reject the null hypothesis
+
+Conclusion: Given the P-value of 0.7232 is greater than alpha level $\alpha = 0.05$, we fail to reject the null hypothesis as there is insufficient evidence that there is a linear relationship between the quantitative variables of screen time before sleep and sleep hours obtained. 
+
+#Does the linear relationship vary by gender? 
+Hypothesis 2: Is there a linear relationship between the screen_time_before_sleep and the number of sleep hours gotten for females only? 
+
+$H_0: \beta_f = 0$
+$H_A: \beta_f \neq 0$
+
+
+```{r}
+
+#Does it vary by gender? 
+fem <- DATA %>% filter(gender == "female")
+model_fem = lm(screen_time_before_sleep ~ sleep_hours, data = fem)
+summary(model_fem)
+
+
+```
+
+P-value: 0.3316
+
+Conclusion: P-value of 0.3316 is greater than alpha level $\alpha = 0.05$. Therefore, we fail to reject the null hypothesis as there is insufficient evidence that there is a linear relationship between the quantitative variables of screen time before sleep and sleep hours obtained for only females. 
+
+
+
+Hypothesis 3: Is there a linear relationship between the screen_time_before_sleep and the number of sleep hours gotten for males only? 
+
+$H_0: \beta_m = 0$
+$H_A: \beta_m \neq 0$
+
+
+
+```{r}
+male <- DATA %>% filter(gender == "male")
+model_male = lm(screen_time_before_sleep ~ sleep_hours, data = male)
+summary(model_male)
+```
+
+
+P-value: 0.1857
+
+Conclusion: The P-value of 0.1857 is greater than alpha level $\alpha = 0.05$. Thus, we fail to reject the null hypothesis as there is insufficient evidence that there is a linear relationship between the quantitative variables of screen time before sleep and sleep hours obtained for males only.
+
+
+
+Section 6 Disucssion: 
+
+Based on the fact that we failed to reject the null hypothesis that there is a linear relationship between screen time before sleep and sleep hours for both genders, just females, and just males. It is safe to say that there is not a linear relationship between our two quanitative variables. 
 
 
 

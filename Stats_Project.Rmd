@@ -672,9 +672,9 @@ Conclusion: The P-value of 0.1857 is greater than alpha level $\alpha = 0.05$. T
 
 
 
-Section 6 Disucssion: 
+Section 6 Discussion: 
 
-Based on the fact that we failed to reject the null hypothesis that there is a linear relationship between screen time before sleep and sleep hours for both genders, just females, and just males. It is safe to say that there is not a linear relationship between our two quanitative variables. 
+Based on the fact that we failed to reject the null hypothesis that there is a linear relationship between screen time before sleep and sleep hours for both genders, just females, and just males. It is safe to say that there is not a linear relationship between our two quantitative variables. 
 
 
 

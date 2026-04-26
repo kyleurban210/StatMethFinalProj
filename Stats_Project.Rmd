@@ -539,11 +539,11 @@ p_hat - z_alpha_2 * s_hat
 #Upper Bound
 p_hat + z_alpha_2 * s_hat
 ```
-e) The gender background of subjects can show trends just as much as any other qualitative variables. At 0.5 significance level, test the hypothesis that the proportion of female teenagers is less then 50%.
+e) The gender background of subjects can show trends just as much as any other qualitative variables. At 0.05 significance level, test the hypothesis that the proportion of female teenagers is less then 50%.
 ```{r}
 prop.test(x = 585, n = 1200, p = 0.50, alternative = "less", correct = F)
 ```
-Since p-value = 0.1932 < 0.05 = $\aplha$, we can reject $H_0$. There is sufficient evidence at $\aplha$ = 0.5 to conclude that the proportion of teenagers that were female was less the 50%
+Since p-value = 0.1932 > 0.05 = $\aplha$, we can fail to reject $H_0$. There is insufficient evidence at $\aplha$ = 0.05 to conclude that the proportion of teenagers that were female was less the 50%
 
 ## -------------------------------------------------------------
 ## Heading 5

@@ -394,14 +394,17 @@ ggplot(DATA, aes(x = sleep_hours)) +
   geom_density(color = "red", size = 1) +
   labs(title = "Distribution of Sleep Hours", subtitle = "Symmetric & Unimodal Shape")
 
+ggplot(DATA, aes(x = sleep_hours)) +
+  geom_boxplot(fill = "lightgreen", outlier.color = "red") +
+  labs(title = "Boxplot of Sleep Hours", x = "Hours")
 ```
 Since the difference between the mean value & the median value is near zero (diff = -0.05058333)
 We can say that the distribution of sleep hours is approximately normal
 
 
-From the information obtained from the histogram with a distribution line graph, we can see that the shape of the data for sleep hours is approximately symmetric with a unimodal shape. 
+From the information obtained from the histogram with a distribution line graph, we can see that the shape of the data for sleep hours is approximately symmetric with a unimodal shape. This is supported by the shape of the box plot having no outliers and the center line being relatively in the center of the box at roughly X = ~6.4hrs, showing that sleep hours is not skewed. Additionally, the whiskers on either side of the box plot are equal in length, supporting the notion that sleep hours is symmetric. 
 
-Additionally, the Center (mean) is ~6.450 and the Spread (standard deviation) is ~1.443 for the quantitative variable of sleep hours
+Finally, the Center (mean) is ~6.450 and the Spread (standard deviation) is ~1.443 for the quantitative variable of sleep hours
 
 
 
@@ -438,21 +441,28 @@ ggplot(DATA, aes(x = screen_time_before_sleep)) +
   labs(title = "Distribution of Screen time before sleep", subtitle = "Symmetric & Unimodal Shape")
 
 
-ggplot(DATA, aes(y = screen_time_before_sleep)) +
+ggplot(DATA, aes(x = screen_time_before_sleep)) +
   geom_boxplot(fill = "lightgreen", outlier.color = "red") +
-  labs(title = "Boxplot of Screen Time Before Sleep", y = "Hours")
+  labs(title = "Boxplot of Screen Time Before Sleep", x = "Hours")
 
 
 ```
+Since the difference between the mean value & the median value is near zero (diff = -0.05966667)
+We can say that the distribution of screen time before sleep is approximately normal.
+
+From the information obtained from the histogram with a distribution line graph, we can see that the shape of the data for Screen time before sleep is approximately symmetric with a unimodal shape. This is supported by the shape of the box plot having no outliers and the center line being relatively in the center of the box roughly at x = ~1.7hrs, showing that Screen time before sleep is not skewed. Additionally, the whiskers on either side of the box plot are equal in length, supporting the notion that Screen time before sleep is symmetric. 
 
 
-```{r}
+
+Finally, the Center (mean) is ~1.740 and the Spread (standard deviation) is ~0.717 for the quantitative variable of screen time before sleep
 
 
-```
 
 b)Create bar graph and relative frequency table for the two categorical variables. 
 
+```{r}
+
+```
 
 
 ## -------------------------------------------------------------

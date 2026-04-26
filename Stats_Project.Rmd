@@ -682,4 +682,75 @@ Based on the fact that we failed to reject the null hypothesis that there is a l
 ## Heading 7
 ## -------------------------------------------------------------
 
+#### 1. One sample confidence interval for the population proportion from the variable selected in Section 1.1.
+
+Construct a 98% confidence interval for the proportion of teens who are female.
+
+Answer: In section 4.2 we are 98% confident that the true proportion of female teenagers in the population is between 43.95% and 53.55%."
+
+
+------------------------------------------------------------------------------
+
+#### 2. One sample confidence interval for the population mean from the variable selected in Section 1.2.
+
+Construct a 99% confidence interval for the mean sleep hours of teens.
+
+Answer: In section 4.1 we are 99% confident that the true mean sleep hours for teenagers is between 6.341972 and 6.556862 hours per night.
+
+------------------------------------------------------------------------------
+
+#### 3. Formulate a research question to conduct a one-sample proportion hypothesis test based on the variable from Section 1.1.
+
+**Research Question:** Is the proportion of female teens in the population different from 50%?
+
+$H_0: p = 0.50$
+
+$H_A: p < 0.50$
+
+Answer: There is insufficient evidence at α = 0.05 to conclude that the proportion of female teenagers is less than 50%.
+
+------------------------------------------------------------------------------
+
+#### 4. Formulate a research question to conduct a one sample t test hypothesis test based on the variable in Section 1.2.
+
+**Research Question:** Do teens get less than the recommended 8 hours of sleep?
+
+$H_0: \mu = 8$
+
+$H_A: \mu < 8$
+
+Answer: There is sufficient evidence at α = 0.05 to conclude that teenagers sleep less than the CDC recommended 8 hours per night.
+
+------------------------------------------------------------------------------
+
+#### 5. Create a research question to do two sample mean (independent t test) hypothesis tests.
+
+**Research Question:** Is there a difference in mean sleep hours between male and female teens?
+
+$H_0: \mu_1 - \mu_2 = 0$ (no difference in mean sleep hours between males and females)
+
+$H_A: \mu_1 - \mu_2 \neq 0$ (there is a difference in mean sleep hours between males and females)
+
+Answer: There is insufficient evidence at α = 0.05 to conclude that there is a difference in mean sleep hours between male and female teenagers.
+
+------------------------------------------------------------------------------
+
+#### 6. Use two quantitative variables to show if there is a linear relationship between them.
+
+**Research Question:** Is there a linear relationship between screen time before sleep and sleep hours?
+
+$H_0: \beta_1 = 0$
+$H_A: \beta_1 \neq 0$
+
+Answer: There is insufficient evidence at α = 0.05 to conclude that there is a linear relationship between screen time before sleep and sleep hours.
+
+
+
+
+
+
+
+
+
+
 

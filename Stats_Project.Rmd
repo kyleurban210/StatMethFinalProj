@@ -362,11 +362,10 @@ What to do: Use the variables from your research question in Introduction sectio
 
 a)Find the distribution of the two quantitative variables: center, spread and shape. 
 
-#Finding Shape
-is it symmetric or skewed? Is it bimodal or unimodal? 
+#Finding Shape, Center, & Spread of Sleep Hours
+
 #Quantitative Variable 1: **sleep_hours**
 ```{r}
-
 
 DATA %>%
   summarise(
@@ -376,7 +375,6 @@ DATA %>%
   )
 
 
-
 DATA %>%
   summarise(
     Shape = "Approximately Symmetric",
@@ -384,9 +382,26 @@ DATA %>%
     Spread_SD = sd(sleep_hours, na.rm = TRUE),
   )
 
+
+DATA %>%
+  ggplot(mapping = aes(sample = sleep_hours)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  labs(title = "QQ Plot of Sleep Hours")
+
+ggplot(DATA, aes(x = sleep_hours)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 15, fill = "skyblue", color = "black") +
+  geom_density(color = "red", size = 1) +
+  labs(title = "Distribution of Sleep Hours", subtitle = "Symmetric & Unimodal Shape")
+
 ```
 Since the difference between the mean value & the median value is near zero (diff = -0.05058333)
 We can say that the distribution of sleep hours is approximately normal
+
+
+From the information obtained from the histogram with a distribution line graph, we can see that the shape of the data for sleep hours is approximately symmetric with a unimodal shape. 
+
+Additionally, the Center (mean) is ~6.450 and the Spread (standard deviation) is ~1.443 for the quantitative variable of sleep hours
 
 
 
@@ -394,18 +409,43 @@ We can say that the distribution of sleep hours is approximately normal
 
 #Quantitative Variable 2: **screen_time_before_sleep**
 
+DATA %>%
+  summarise(
+    mean_val = mean(screen_time_before_sleep, na.rm = TRUE),
+    median_val = median(screen_time_before_sleep, na.rm = TRUE),
+    diff = mean_val - median_val 
+  )
+
+
+
+DATA %>%
+  summarise(
+    Shape = "Approximately Symmetric",
+    Center_Mean = mean(screen_time_before_sleep, na.rm = TRUE),
+    Spread_SD = sd(screen_time_before_sleep, na.rm = TRUE),
+  )
+
+
+DATA %>%
+  ggplot(mapping = aes(sample = screen_time_before_sleep)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  labs(title = "QQ Plot of Screen time before sleep")
+
+ggplot(DATA, aes(x = screen_time_before_sleep)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 15, fill = "skyblue", color = "black") +
+  geom_density(color = "red", size = 1) +
+  labs(title = "Distribution of Screen time before sleep", subtitle = "Symmetric & Unimodal Shape")
+
+
+ggplot(DATA, aes(y = screen_time_before_sleep)) +
+  geom_boxplot(fill = "lightgreen", outlier.color = "red") +
+  labs(title = "Boxplot of Screen Time Before Sleep", y = "Hours")
+
 
 ```
 
-#Finding Center
-Mean (symmetric) or median (skewed)?
-```{r}
 
-```
-
-#Finding spread
-If symmetric, find the standard deviation
-If skewed, find the IQR.
 ```{r}
 
 

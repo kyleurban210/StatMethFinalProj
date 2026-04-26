@@ -460,10 +460,37 @@ Finally, the Center (mean) is ~1.740 and the Spread (standard deviation) is ~0.7
 
 b)Create bar graph and relative frequency table for the two categorical variables. 
 
+#Categorical Variable 1:**gender**
 ```{r}
+
+#Bar Graph of Gender
+ggplot(DATA, aes(x = gender)) + 
+  geom_bar(fill = "steelblue", color = "green")
+
+#Relative Frequency Table for Gender
+DATA %>% 
+  count(gender, name = "freq") %>%
+  mutate(rel_freq = freq/sum(freq))
+
+
+
+
 
 ```
 
+
+#Categorical variable 2: **platform_usage**
+```{r}
+
+#Bar Graph of Platform Usage
+ggplot(DATA, aes(x = platform_usage)) + geom_bar(fill = "magenta", color  = "blue")
+
+#Relative Frequency Table for Platform Usage:
+DATA %>% 
+  count(platform_usage, name = "freq") %>%
+  mutate(rel_freq = freq/sum(freq))
+
+```
 
 ## -------------------------------------------------------------
 ## Heading 4

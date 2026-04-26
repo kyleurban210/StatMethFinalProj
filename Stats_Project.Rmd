@@ -293,7 +293,7 @@ Find $P(\bar{X} > 6.5)$
 
 #### 1. One sample confidence interval for the population proportion from the variable selected in Section 1.1.
 
-Construct a 95% confidence interval for the proportion of teens who are female.
+Construct a 98% confidence interval for the proportion of teens who are female.
 
 This establishes the demographic makeup of the population. Before comparing sleep patterns between genders, we need to understand the gender distribution and how confident we are in that estimate.
 
@@ -301,7 +301,7 @@ This establishes the demographic makeup of the population. Before comparing slee
 
 #### 2. One sample confidence interval for the population mean from the variable selected in Section 1.2.
 
-Construct a 95% confidence interval for the mean sleep hours of teens.
+Construct a 99% confidence interval for the mean sleep hours of teens.
 
 This gives us a range for the true average sleep hours across all teens. Before investigating whether screen time is hurting sleep, we need a baseline estimate of how much sleep teens are actually getting.
 

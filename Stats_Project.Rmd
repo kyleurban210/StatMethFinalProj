@@ -353,6 +353,24 @@ $H_A: \beta_1 \neq 0$
 This is the core of the entire research question. By fitting a regression model with screen_time_before_sleep as the explanatory variable and sleep_hours as the response variable, we can determine whether more screen time before bed predicts less sleep, how strong that relationship is, and by how much sleep changes per unit increase in screen time.
 
 
+### 2.2 Responsible Living
+Responsible Living refers to maintaining you health whether that be physically or mentally. Sleep is a crucial part of maintaining good mental health. Sleep deprivation can lead to multiple health issues in adolescents. Sleep deprivation can lead to stress, depression, or even impede physical development of the brain. So it is important that we find the causes of sleep deprivation and encourage adolescents to get the recommended amount of sleep every night. Screentime is a common cause of sleep deprivation according to multiple studies into blue light and its effect on melatonin production. By understanding the relationship between screentime before sleep and sleep hours, we can make informed recommendations to teenagers about their screen time habits and how it may be affecting their sleep and overall mental health.
+
+-------------------------------------------------------------------------------
+
+### 2.3 Data Overview: 
+a) The dataset used in this analysis is the Teenager Mental Health Dataset, a public dataset sourced from Kaggle, available at: https://www.kaggle.com/datasets/algozee/teenager-menthal-healy?resource=download
+
+
+b) The dataset contains 1200 observations and multiple variables capturing various aspects of teenage mental health, lifestyle habits, and social media usage. For the purposes of this analysis.
+
+c) We use these four variables in this analysis:
+
+gender, platform_usage, sleep_hours, and screen_time_before_sleep
+
+These four variables are the foundation of all research questions formulated in this analysis. gender and sleep_hours were selected in Section 1.1 and 1.2 respectively, while screen_time_before_sleep serves as the explanatory variable in the regression analysis. platform_usage provides additional categorical context explored during exploratory data analysis.
+
+
 ## -------------------------------------------------------------
 ## Heading 3
 ## -------------------------------------------------------------

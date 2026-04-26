@@ -494,7 +494,7 @@ There is sufficient evidence at $\alpha$ = 0.05 to conclude that the mean hours 
 
 #Section 4.2
 a) The variable is gender which is Qualitative
-b) Parameter is the proportions of females in the study
+b) Parameter is the proportions of female teenagers
 c) Independent
 d) Point Estimate is 48.75% 
    Lower = 43.95% and Upper = 53.55%

@@ -313,7 +313,7 @@ This gives us a range for the true average sleep hours across all teens. Before 
 
 $H_0: p = 0.50$
 
-$H_A: p \neq 0.50$
+$H_A: p < 0.50$
 
 This tests whether the gender split in the population is roughly even or skewed. If the dataset is heavily skewed toward one gender, that matters when we interpret the two-sample comparison of sleep hours later.
 

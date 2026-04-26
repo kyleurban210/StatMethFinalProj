@@ -355,6 +355,12 @@ This is the core of the entire research question. By fitting a regression model 
 ## -------------------------------------------------------------
 
 
+What to do: Use the variables from your research question in Introduction section
+
+a)Find the distribution of the two quantitative variables: center, spread and shape. 
+b)Create bar graph and relative frequency table for the two categorical variables. 
+
+
 
 ## -------------------------------------------------------------
 ## Heading 4

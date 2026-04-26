@@ -686,7 +686,7 @@ Based on the fact that we failed to reject the null hypothesis that there is a l
 
 Construct a 98% confidence interval for the proportion of teens who are female.
 
-Answer: In section 4.2 we are 98% confident that the true proportion of female teenagers in the population is between 43.95% and 53.55%."
+Answer: We are 98% confident that the true proportion of female teenagers in the population is between 43.95% and 53.55%.
 
 
 ------------------------------------------------------------------------------
@@ -695,7 +695,7 @@ Answer: In section 4.2 we are 98% confident that the true proportion of female t
 
 Construct a 99% confidence interval for the mean sleep hours of teens.
 
-Answer: In section 4.1 we are 99% confident that the true mean sleep hours for teenagers is between 6.341972 and 6.556862 hours per night.
+Answer: We are 99% confident that the true mean sleep hours for teenagers is between 6.342 and 6.557 hours per night.
 
 ------------------------------------------------------------------------------
 

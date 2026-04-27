@@ -614,6 +614,14 @@ Hypothesis 1: Is there a linear relationship between the screen_time_before_slee
 $H_0: \beta_1 = 0$
 $H_A: \beta_1 \neq 0$
 
+Check Requirements
+#Is Independent (Normal Distribution)
+
+
+
+
+
+
 ```{r}
 
 

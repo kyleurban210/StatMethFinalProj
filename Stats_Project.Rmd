@@ -621,13 +621,34 @@ model = lm(screen_time_before_sleep ~ sleep_hours, data = DATA)
 
 #coef(model)
 summary(model)
+
 ```
+
 
 P-value: 0.7232
 
 Decision: The P-value of 0.7232 is greater than alpha level of $\alpha = 0.05$. Also, the Adjusted R-squared is near zero, showing only a little of variance is a result of the dependent variable. Thus we fail to reject the null hypothesis
 
 Conclusion: Given the P-value of 0.7232 is greater than alpha level $\alpha = 0.05$, we fail to reject the null hypothesis as there is insufficient evidence that there is a linear relationship between the quantitative variables of screen time before sleep and sleep hours obtained. 
+
+
+#Plotting the Model for Screen time before sleep and sleep hours
+```{r}
+#plot(model, which = 2)
+
+ggplot(model, aes(sample = resid(model))) +
+  stat_qq() +
+  stat_qq_line(color = "red") + 
+  labs(title = "Normal Q-Q Plot of Residuals", 
+       x = "Theoretical Quantiles", 
+       y = "Sample Residuals")
+
+
+```
+
+Clearly, based on the Normal QQ Plot of the residuals, we can see that the linear regression model underfits the data as the relationship of the data is non-linear. Rather, the relationship resembles that of a sigmoid function. 
+
+
 
 #Does the linear relationship vary by gender? 
 Hypothesis 2: Is there a linear relationship between the screen_time_before_sleep and the number of sleep hours gotten for females only? 
@@ -644,6 +665,8 @@ model_fem = lm(screen_time_before_sleep ~ sleep_hours, data = fem)
 summary(model_fem)
 
 
+
+
 ```
 
 P-value: 0.3316
@@ -657,6 +680,23 @@ Hypothesis 3: Is there a linear relationship between the screen_time_before_slee
 $H_0: \beta_m = 0$
 $H_A: \beta_m \neq 0$
 
+
+#Plotting the Female Model for Screen time before sleep and sleep hours
+```{r}
+
+
+ggplot(model_fem, aes(sample = resid(model_fem))) +
+  stat_qq() +
+  stat_qq_line(color = "red") + 
+  labs(title = "Normal Q-Q Plot of Residuals", 
+       x = "Theoretical Quantiles", 
+       y = "Sample Residuals")
+
+
+```
+
+
+Again, just like with the first model, the linear regression model underfits the female data, showing that sleep hours and screen time are in a sigmoid relationship instead. 
 
 
 ```{r}
@@ -672,9 +712,28 @@ Conclusion: The P-value of 0.1857 is greater than alpha level $\alpha = 0.05$. T
 
 
 
+#Plotting the Male Model for Screen time before sleep and sleep hours
+```{r}
+
+
+ggplot(model_male, aes(sample = resid(model_male))) +
+  stat_qq() +
+  stat_qq_line(color = "red") + 
+  labs(title = "Normal Q-Q Plot of Residuals", 
+       x = "Theoretical Quantiles", 
+       y = "Sample Residuals")
+
+
+```
+
+Again, just like with the first and female models, the linear regression model underfits the male data too. Once again, we see sleep hours and screen time are in a sigmoid relationship instead. 
+
+
+
+
 Section 6 Discussion: 
 
-Based on the fact that we failed to reject the null hypothesis that there is a linear relationship between screen time before sleep and sleep hours for both genders, just females, and just males. It is safe to say that there is not a linear relationship between our two quantitative variables. 
+Based on the fact that we failed to reject the null hypothesis that there not is a linear relationship between screen time before sleep and sleep hours for both genders, just females, and just males. There is insufficient evidence to prove to say there is a linear relationship between our two quantitative variables. However, the QQ plots indicate that instead the relationship is non-linear, most likely a sigmoid function.
 
 
 
@@ -742,7 +801,7 @@ Answer: There is insufficient evidence at α = 0.05 to conclude that there is a 
 $H_0: \beta_1 = 0$
 $H_A: \beta_1 \neq 0$
 
-Answer: There is insufficient evidence at α = 0.05 to conclude that there is a linear relationship between screen time before sleep and sleep hours.
+Answer: There is insufficient evidence at α = 0.05 to conclude that there is a linear relationship between screen time before sleep and sleep hours. However, the QQ plots display a non-linear relationship between screen time before sleep and sleep hours, most likely a sigmoid function based on shape, but further testing would be required to determine that. 
 
 
 

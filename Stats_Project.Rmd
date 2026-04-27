@@ -615,10 +615,13 @@ $H_0: \beta_1 = 0$
 $H_A: \beta_1 \neq 0$
 
 Check Requirements
-#Is Independent (Normal Distribution)
-
-
-
+#Is Normal (Normal Distribution) 
+--- No, as per the QQ plot of the model below, the points of the residuals tail off of the red line at either end, showing instead a non linear relationship, which is not something a normal distribution would do
+#Is Linear
+--- Technically no, as per the QQ plot, the relationship is non linear
+#Is n > 30, yes, as the N is 1200
+#Is Independent
+--- This is assumed given the dataset. 
 
 
 
@@ -664,6 +667,15 @@ Hypothesis 2: Is there a linear relationship between the screen_time_before_slee
 $H_0: \beta_f = 0$
 $H_A: \beta_f \neq 0$
 
+Check Requirements
+#Is Normal (Normal Distribution) 
+--- No, as per the QQ plot of the model below, the points of the residuals tail off of the red line at either end, showing instead a non linear relationship, which is not something a normal distribution would do
+#Is Linear
+--- Technically no, as per the QQ plot, the relationship is non linear
+#Is n > 30, yes, as the N is 585 females
+#Is Independent
+--- This is assumed given the dataset. 
+
 
 ```{r}
 
@@ -688,6 +700,16 @@ Hypothesis 3: Is there a linear relationship between the screen_time_before_slee
 $H_0: \beta_m = 0$
 $H_A: \beta_m \neq 0$
 
+
+
+Check Requirements
+#Is Normal (Normal Distribution) 
+--- No, as per the QQ plot of the model below, the points of the residuals tail off of the red line at either end, showing instead a non linear relationship, which is not something a normal distribution would do
+#Is Linear
+--- Technically no, as per the QQ plot, the relationship is non linear
+#Is n > 30, yes, as the N is 615 males
+#Is Independent
+--- This is assumed given the dataset. 
 
 #Plotting the Female Model for Screen time before sleep and sleep hours
 ```{r}

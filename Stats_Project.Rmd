@@ -1,6 +1,6 @@
 ---
 title: "Statistical Methods Final Project"
-author: "Kyle Urban, James Joyner, Brennon"
+author: "Kyle Urban, James Joyner, Brennan Welch"
 date: "`r Sys.Date()`"
 output: 
   html_document:
@@ -13,7 +13,6 @@ output:
      toc_float: true
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -21,23 +20,22 @@ knitr::opts_chunk$set(echo = TRUE)
 Loading packages
 ```{r warning=F, message=F}
 library(tidyverse)
-
 ```
 
 ```{r}
 DATA <- read_csv("Teen_Mental_Health_Dataset.csv")
-
 DATA
 ```
 
 Qualitative Variables: **gender**, **platform_usage**
 
 Quantitative Variables: **sleep_hours**, **screen_time_before_sleep**
-## -------------------------------------------------------------
-## Heading 1
-## -------------------------------------------------------------
 
-### Section 1.1 Qualitative Data
+---
+
+# Heading 1: Probability Distributions
+
+## Section 1.1 Qualitative Data
 
 Qualitative Variable: **gender**
 
@@ -45,10 +43,7 @@ Success: **female**
 
 Population size: N = 1200
 
-
-------------------------------------------------------------------------------
-
-#### 1. Select one qualitative variable and use one level of the qualitative variable as success and select a sample size of at least 50.
+**1. Select one qualitative variable and use one level of the qualitative variable as success and select a sample size of at least 50.**
 
 ```{r}
 # Frequency Table
@@ -69,10 +64,7 @@ p <- 585/1200
 p
 ```
 
-
-------------------------------------------------------------------------------
-
-#### 2. Show the number of successes is from binomial distribution.
+**2. Show the number of successes is from binomial distribution.**
 
 Let X = number of females in a random sample of n = 50 teens.
 
@@ -114,10 +106,7 @@ binom_pmf %>%
        title = "PMF of X ~ Bin(50, 0.4875)")
 ```
 
-
-------------------------------------------------------------------------------
-
-#### 3. Find the probability the random variable is more than its mean.
+**3. Find the probability the random variable is more than its mean.**
 
 ```{r}
 # Mean: E(X) = np
@@ -141,10 +130,7 @@ P(X > 24.375) = P(X >= 25) = 1 - P(X <= 24)
 dbinom(x = 25:50, size = 50, prob = p) %>% sum()
 ```
 
-
-------------------------------------------------------------------------------
-
-#### 4. Find the sampling distribution of the sample proportion of the qualitative variable with a sample size of at least 50.
+**4. Find the sampling distribution of the sample proportion of the qualitative variable with a sample size of at least 50.**
 
 $\hat{p}$ = sample proportion of females in a sample of n = 50
 
@@ -175,19 +161,13 @@ np(1-p) = 12.49 >= 10
 
 Since the requirements hold, $\hat{p}$ is approximately normal.
 
+---
 
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
-
-### Section 1.2 Quantitative Data
+## Section 1.2 Quantitative Data
 
 Quantitative Variable: **sleep_hours**
 
-
-------------------------------------------------------------------------------
-
-#### 1. Select one quantitative variable.
+**1. Select one quantitative variable.**
 
 ```{r}
 DATA %>%
@@ -197,10 +177,7 @@ DATA %>%
             IQR_sleep = IQR(sleep_hours, na.rm = T))
 ```
 
-
-------------------------------------------------------------------------------
-
-#### 2. Check if the quantitative variable is from normal distribution.
+**2. Check if the quantitative variable is from normal distribution.**
 
 ```{r}
 # QQ Plot
@@ -230,10 +207,7 @@ DATA %>%
 
 The QQ plot shows the points approximately follow the reference line. The histogram shows an approximately symmetric distribution. Based on these plots, sleep_hours is approximately normally distributed.
 
-
-------------------------------------------------------------------------------
-
-#### 3. Find the sampling distribution of the sample mean of the quantitative variable with sample size of at least 50.
+**3. Find the sampling distribution of the sample mean of the quantitative variable with sample size of at least 50.**
 
 Population parameters (since this section assumes population data):
 ```{r}
@@ -270,10 +244,7 @@ iii) Normal or approximately normal if:
 
 Since the requirements hold, $\bar{X}$ is approximately normal.
 
-
-------------------------------------------------------------------------------
-
-#### 4. Find a probability of sample mean is greater than a number.
+**4. Find a probability of sample mean is greater than a number.**
 
 Find $P(\bar{X} > 6.5)$
 
@@ -282,34 +253,29 @@ Find $P(\bar{X} > 6.5)$
 1 - pnorm(q = 6.5, mean = mu_x, sd = sigma_x / sqrt(50))
 ```
 
-## -------------------------------------------------------------
-## Heading 2
-## -------------------------------------------------------------
-### 2.1 Research Objectives
+---
+
+# Heading 2: Introduction
+
+## 2.1 Research Objectives
 
 **Main Research Question:** Does screen time before sleep on social media platforms affect sleep hours, and does this relationship differ by gender?
 
-------------------------------------------------------------------------------
-
-#### 1. One sample confidence interval for the population proportion from the variable selected in Section 1.1.
+**1. One sample confidence interval for the population proportion from the variable selected in Section 1.1.**
 
 Construct a 98% confidence interval for the proportion of teens who are female.
 
 This establishes the demographic makeup of the population. Before comparing sleep patterns between genders, we need to understand the gender distribution and how confident we are in that estimate.
 
-------------------------------------------------------------------------------
-
-#### 2. One sample confidence interval for the population mean from the variable selected in Section 1.2.
+**2. One sample confidence interval for the population mean from the variable selected in Section 1.2.**
 
 Construct a 99% confidence interval for the mean sleep hours of teens.
 
 This gives us a range for the true average sleep hours across all teens. Before investigating whether screen time is hurting sleep, we need a baseline estimate of how much sleep teens are actually getting.
 
-------------------------------------------------------------------------------
+**3. Formulate a research question to conduct a one-sample proportion hypothesis test based on the variable from Section 1.1.**
 
-#### 3. Formulate a research question to conduct a one-sample proportion hypothesis test based on the variable from Section 1.1.
-
-**Research Question:** Is the proportion of female teens in the population different from 50%?
+Research Question: Is the proportion of female teens in the population less than 50%?
 
 $H_0: p = 0.50$
 
@@ -317,11 +283,9 @@ $H_A: p < 0.50$
 
 This tests whether the gender split in the population is roughly even or skewed. If the dataset is heavily skewed toward one gender, that matters when we interpret the two-sample comparison of sleep hours later.
 
-------------------------------------------------------------------------------
+**4. Formulate a research question to conduct a one sample t test hypothesis test based on the variable in Section 1.2.**
 
-#### 4. Formulate a research question to conduct a one sample t test hypothesis test based on the variable in Section 1.2.
-
-**Research Question:** Do teens get less than the recommended 8 hours of sleep?
+Research Question: Do teens get less than the recommended 8 hours of sleep?
 
 $H_0: \mu = 8$
 
@@ -329,11 +293,9 @@ $H_A: \mu < 8$
 
 The CDC recommends 8-10 hours of sleep for teens. Testing whether the mean sleep hours is significantly less than 8 directly addresses the core concern of our research question. If teens are not getting enough sleep, it motivates investigating screen time as a potential cause.
 
-------------------------------------------------------------------------------
+**5. Create a research question to do two sample mean (independent t test) hypothesis tests.**
 
-#### 5. Create a research question to do two sample mean (independent t test) hypothesis tests.
-
-**Research Question:** Is there a difference in mean sleep hours between male and female teens?
+Research Question: Is there a difference in mean sleep hours between male and female teens?
 
 $H_0: \mu_1 - \mu_2 = 0$ (no difference in mean sleep hours between males and females)
 
@@ -341,26 +303,27 @@ $H_A: \mu_1 - \mu_2 \neq 0$ (there is a difference in mean sleep hours between m
 
 This directly answers the second half of the main research question: "does this relationship differ by gender?" By comparing mean sleep hours between males and females, we can determine if one gender is sleeping significantly less than the other.
 
--------------------------------------------------------------------------------
+**6. Use two quantitative variables to show if there is a linear relationship between them.**
 
-#### 6. Use two quantitative variables to show if there is a linear relationship between them.
-
-**Research Question:** Is there a linear relationship between screen time before sleep and sleep hours?
+Research Question: Is there a linear relationship between screen time before sleep and sleep hours?
 
 $H_0: \beta_1 = 0$
+
 $H_A: \beta_1 \neq 0$
 
 This is the core of the entire research question. By fitting a regression model with screen_time_before_sleep as the explanatory variable and sleep_hours as the response variable, we can determine whether more screen time before bed predicts less sleep, how strong that relationship is, and by how much sleep changes per unit increase in screen time.
 
+---
 
-### 2.2 Responsible Living
+## 2.2 Responsible Living
+
 Responsible Living refers to maintaining you health whether that be physically or mentally. Sleep is a crucial part of maintaining good mental health. Sleep deprivation can lead to multiple health issues in adolescents. Sleep deprivation can lead to stress, depression, or even impede physical development of the brain. So it is important that we find the causes of sleep deprivation and encourage adolescents to get the recommended amount of sleep every night. Screentime is a common cause of sleep deprivation according to multiple studies into blue light and its effect on melatonin production. By understanding the relationship between screentime before sleep and sleep hours, we can make informed recommendations to teenagers about their screen time habits and how it may be affecting their sleep and overall mental health.
 
--------------------------------------------------------------------------------
+---
 
-### 2.3 Data Overview: 
+## 2.3 Data Overview
+
 a) The dataset used in this analysis is the Teenager Mental Health Dataset, a public dataset sourced from Kaggle, available at: https://www.kaggle.com/datasets/algozee/teenager-menthal-healy?resource=download
-
 
 b) The dataset contains 1200 observations and multiple variables capturing various aspects of teenage mental health, lifestyle habits, and social media usage. For the purposes of this analysis.
 
@@ -370,21 +333,15 @@ gender, platform_usage, sleep_hours, and screen_time_before_sleep
 
 These four variables are the foundation of all research questions formulated in this analysis. gender and sleep_hours were selected in Section 1.1 and 1.2 respectively, while screen_time_before_sleep serves as the explanatory variable in the regression analysis. platform_usage provides additional categorical context explored during exploratory data analysis.
 
+---
 
-## -------------------------------------------------------------
-## Heading 3
-## -------------------------------------------------------------
+# Heading 3: Exploratory Data Analysis
 
+## a) Quantitative Variables: Center, Spread, and Shape
 
-What to do: Use the variables from your research question in Introduction section
+**Quantitative Variable 1: sleep_hours**
 
-a)Find the distribution of the two quantitative variables: center, spread and shape. 
-
-#Finding Shape, Center, & Spread of Sleep Hours
-
-#Quantitative Variable 1: **sleep_hours**
 ```{r}
-
 DATA %>%
   summarise(
     mean_val = mean(sleep_hours, na.rm = TRUE),
@@ -392,14 +349,12 @@ DATA %>%
     diff = mean_val - median_val 
   )
 
-
 DATA %>%
   summarise(
     Shape = "Approximately Symmetric",
     Center_Mean = mean(sleep_hours, na.rm = TRUE),
     Spread_SD = sd(sleep_hours, na.rm = TRUE),
   )
-
 
 DATA %>%
   ggplot(mapping = aes(sample = sleep_hours)) +
@@ -416,20 +371,17 @@ ggplot(DATA, aes(x = sleep_hours)) +
   geom_boxplot(fill = "lightgreen", outlier.color = "red") +
   labs(title = "Boxplot of Sleep Hours", x = "Hours")
 ```
+
 Since the difference between the mean value & the median value is near zero (diff = -0.05058333)
-We can say that the distribution of sleep hours is approximately normal
+We can say that the distribution of sleep hours is approximately normal.
 
+From the information obtained from the histogram with a distribution line graph, we can see that the shape of the data for sleep hours is approximately symmetric with a unimodal shape. This is supported by the shape of the box plot having no outliers and the center line being relatively in the center of the box at roughly X = ~6.4hrs, showing that sleep hours is not skewed. Additionally, the whiskers on either side of the box plot are equal in length, supporting the notion that sleep hours is symmetric.
 
-From the information obtained from the histogram with a distribution line graph, we can see that the shape of the data for sleep hours is approximately symmetric with a unimodal shape. This is supported by the shape of the box plot having no outliers and the center line being relatively in the center of the box at roughly X = ~6.4hrs, showing that sleep hours is not skewed. Additionally, the whiskers on either side of the box plot are equal in length, supporting the notion that sleep hours is symmetric. 
+Finally, the Center (mean) is ~6.450 and the Spread (standard deviation) is ~1.443 for the quantitative variable of sleep hours.
 
-Finally, the Center (mean) is ~6.450 and the Spread (standard deviation) is ~1.443 for the quantitative variable of sleep hours
-
-
+**Quantitative Variable 2: screen_time_before_sleep**
 
 ```{r}
-
-#Quantitative Variable 2: **screen_time_before_sleep**
-
 DATA %>%
   summarise(
     mean_val = mean(screen_time_before_sleep, na.rm = TRUE),
@@ -437,15 +389,12 @@ DATA %>%
     diff = mean_val - median_val 
   )
 
-
-
 DATA %>%
   summarise(
     Shape = "Approximately Symmetric",
     Center_Mean = mean(screen_time_before_sleep, na.rm = TRUE),
     Spread_SD = sd(screen_time_before_sleep, na.rm = TRUE),
   )
-
 
 DATA %>%
   ggplot(mapping = aes(sample = screen_time_before_sleep)) +
@@ -458,29 +407,25 @@ ggplot(DATA, aes(x = screen_time_before_sleep)) +
   geom_density(color = "red", size = 1) +
   labs(title = "Distribution of Screen time before sleep", subtitle = "Symmetric & Unimodal Shape")
 
-
 ggplot(DATA, aes(x = screen_time_before_sleep)) +
   geom_boxplot(fill = "lightgreen", outlier.color = "red") +
   labs(title = "Boxplot of Screen Time Before Sleep", x = "Hours")
-
-
 ```
+
 Since the difference between the mean value & the median value is near zero (diff = -0.05966667)
 We can say that the distribution of screen time before sleep is approximately normal.
 
-From the information obtained from the histogram with a distribution line graph, we can see that the shape of the data for Screen time before sleep is approximately symmetric with a unimodal shape. This is supported by the shape of the box plot having no outliers and the center line being relatively in the center of the box roughly at x = ~1.7hrs, showing that Screen time before sleep is not skewed. Additionally, the whiskers on either side of the box plot are equal in length, supporting the notion that Screen time before sleep is symmetric. 
+From the information obtained from the histogram with a distribution line graph, we can see that the shape of the data for Screen time before sleep is approximately symmetric with a unimodal shape. This is supported by the shape of the box plot having no outliers and the center line being relatively in the center of the box roughly at x = ~1.7hrs, showing that Screen time before sleep is not skewed. Additionally, the whiskers on either side of the box plot are equal in length, supporting the notion that Screen time before sleep is symmetric.
 
+Finally, the Center (mean) is ~1.740 and the Spread (standard deviation) is ~0.717 for the quantitative variable of screen time before sleep.
 
+---
 
-Finally, the Center (mean) is ~1.740 and the Spread (standard deviation) is ~0.717 for the quantitative variable of screen time before sleep
+## b) Categorical Variables: Bar Graphs and Relative Frequency Tables
 
+**Categorical Variable 1: gender**
 
-
-b)Create bar graph and relative frequency table for the two categorical variables. 
-
-#Categorical Variable 1:**gender**
 ```{r}
-
 #Bar Graph of Gender
 ggplot(DATA, aes(x = gender)) + 
   geom_bar(fill = "steelblue", color = "green")
@@ -489,17 +434,11 @@ ggplot(DATA, aes(x = gender)) +
 DATA %>% 
   count(gender, name = "freq") %>%
   mutate(rel_freq = freq/sum(freq))
-
-
-
-
-
 ```
 
+**Categorical Variable 2: platform_usage**
 
-#Categorical variable 2: **platform_usage**
 ```{r}
-
 #Bar Graph of Platform Usage
 ggplot(DATA, aes(x = platform_usage)) + geom_bar(fill = "magenta", color  = "blue")
 
@@ -507,59 +446,78 @@ ggplot(DATA, aes(x = platform_usage)) + geom_bar(fill = "magenta", color  = "blu
 DATA %>% 
   count(platform_usage, name = "freq") %>%
   mutate(rel_freq = freq/sum(freq))
-
 ```
 
-## -------------------------------------------------------------
-## Heading 4
-## -------------------------------------------------------------
+---
 
-#Section 4.0
+# Heading 4: One Sample Confidence Interval and Hypothesis Testing
+
+## Section 4.0
+
 a) Population is all teenagers
+
 b) Sample is 1200 teenagers
 
-#Section 4.1
+---
+
+## Section 4.1 Quantitative Variable
+
 a) The variable is daily hours of sleep which is Quantitative
+
 b) Parameter is mean number of hours asleep
-c) X_bar - Mean
 
-#Checking Requirments
-i) n <= 0.05N  - *True*
+c) Statistic: $\bar{X}$ = 6.449417 (sample mean)
+
+**Checking Requirements:**
+
+i) n <= 0.05N - *True*
+
 ii) Simple random sample - *Assumed, True*
-iii) n >= 30 or X ~ Normal - *1200 is >= 30*
-#Checking Requirments
 
-d) Point Estimate is 6.449417
-   Lower = 6.341972 and Upper = 6.556862
+iii) n >= 30 or X ~ Normal - *1200 is >= 30*
+
+d) Point Estimate is 6.449417 | Lower = 6.341972 and Upper = 6.556862
+
 ```{r}
 DATA %>% summarise(DATA_mean = mean(sleep_hours), DATA_sd = sd(sleep_hours))
 
 t.test(x = DATA$sleep_hours, conf.level = 0.99)
 ```
+
 e) It is recommended by doctors and health professionals that everyone should sleep for 8 hours a night to get a good nights rest. Lack of sleep can lead to multiple mental problems which can affect anyone. Do these results show a average of sleep less then 8 hours a night with a 0.05 significance level?
+
 ```{r}
 t0 <- (6.449417 - 8)/(1.442677/sqrt(1200))
 t0
 pt(q = t0, df = 1200 - 1 )
 ```
+
 There is sufficient evidence at $\alpha$ = 0.05 to conclude that the mean hours of sleep each night for teenagers is less then the recommended 8
 
-#Section 4.2
-a) The variable is gender which is Qualitative
-b) Parameter is the proportions of female teenagers
-c) P - Proportion
+---
 
-#Checking Requirments
-i) n <= 0.05N  - *True*
+## Section 4.2 Qualitative Variable
+
+a) The variable is gender which is Qualitative
+
+b) Parameter is the proportions of female teenagers
+
+c) Statistic: $\hat{p}$ = 0.4875 (sample proportion)
+
+**Checking Requirements:**
+
+i) n <= 0.05N - *True*
+
 ii) Simple random sample - *Assumed, True*
-iii)  n * p(1-p) >= 10 or X ~ Normal - *299.8125 is >= 10*
+
+iii) n * p(1-p) >= 10 - *299.8125 is >= 10*
+
 ```{r}
 1200 * (585/1200) * (1-(585/1200))
 ```
-#Checking Requirments
 
-d) Point Estimate is 48.75% 
-   Lower = 43.95% and Upper = 53.55%
+d) Point Estimate is 48.75% | Lower = 43.95% and Upper = 53.55%
+
 ```{r}
 DATA %>% count(gender)
 585/1200
@@ -574,184 +532,175 @@ p_hat - z_alpha_2 * s_hat
 #Upper Bound
 p_hat + z_alpha_2 * s_hat
 ```
+
 e) The gender background of subjects can show trends just as much as any other qualitative variables. At 0.05 significance level, test the hypothesis that the proportion of female teenagers is less then 50%.
+
 ```{r}
 prop.test(x = 585, n = 1200, p = 0.50, alternative = "less", correct = F)
 ```
-Since p-value = 0.1932 > 0.05 = $\aplha$, we can fail to reject $H_0$. There is insufficient evidence at $\aplha$ = 0.05 to conclude that the proportion of teenagers that were female was less the 50%
 
-## -------------------------------------------------------------
-## Heading 5
-## -------------------------------------------------------------
+Since p-value = 0.1932 > 0.05 = $\alpha$, we fail to reject $H_0$. There is insufficient evidence at $\alpha$ = 0.05 to conclude that the proportion of teenagers that were female was less the 50%
 
+---
 
-Quantitative Variables: **sleep_hours**
-Test female vs male sleep hours
+# Heading 5: Two Sample t-test - Independent Sampling Method
 
-#Section 5.1
+## Section 5.1
 
-We want to test if the time asleep for males is largely different time spent asleep for females. We will be testing this at the 95% confidence level with $\mu_1 - \mu_2$ representing the difference. from male sleeping to female sleeping.
+We want to test if the time asleep for males is largely different time spent asleep for females. We will be testing this at the 95% confidence level with $\mu_1 - \mu_2$ representing the difference from male sleeping to female sleeping.
 
-#Checking Requirments
+**Checking Requirements:**
+
 i) n1 <= 0.05N1 and n2 <= 0.05N2 - *True*
-ii) Simple random samples - *Assumed, True*
-iii) n1 >= 30 and n2 >= 30 or X ~ Normal and Y ~ Normal - *1200 is >= 30*
-#Checking Requirments
 
-a) Population 1 = all male teenagers
-   Population 2 = all female teenagers
-b) Sample 1 = 615 male teenagers
-   Sample 2 = 585 female teenagers
+ii) Simple random samples - *Assumed, True*
+
+iii) n1 >= 30 and n2 >= 30 or X ~ Normal and Y ~ Normal - *1200 is >= 30*
+
+a) Population 1 = all male teenagers | Population 2 = all female teenagers
+
+b) Sample 1 = 615 male teenagers | Sample 2 = 585 female teenagers
+
 c) Time asleep and gender, Time Asleep is Quantitative while Gender is Qualitative
-d) Parameter 1 = $\mu_1$ = mean time asleep for males
-   Parameter 2 = $\mu_2$ = mean time asleep for females
-e) mu_1 and mu_2 which stand in for the mean
+
+d) Parameter 1 = $\mu_1$ = mean time asleep for males | Parameter 2 = $\mu_2$ = mean time asleep for females
+
+e) Statistic 1 = $\bar{x}_1$ = 6.404715 (mean sleep hours for males) | Statistic 2 = $\bar{x}_2$ = 6.49641 (mean sleep hours for females)
+
 ```{r}
 DATA_male <- DATA %>% filter(gender == "male")
 DATA_female <- DATA %>% filter(gender == "female")
 
 t.test(x = DATA_male$sleep_hours, y = DATA_female$sleep_hours, alternative = "two.sided", conf.level = 0.95)
 ```
-Since 0 is in the 95% confidence interval, we fail to reject the NULL hypothesis. There is insufficient evinced using 95% confidence interval to conclude that the mean difference between male and female teenager sleeping hours is less then 0.
 
-
-## -------------------------------------------------------------
-## Heading 6
-## -------------------------------------------------------------
-
-
-Use two quantitative variables to show if there is a linear relationship between them.
-
-
-a) What are the variables? What type of variables are they? 
-
-Quantitative Variable 1: **sleep_hours**
-Quantitative Variable 2: **screen_time_before_sleep**
-
-
-b) Run a hypothesis test to test your hypothesis.
-
-
-#Not sure if it wants me to test the original hypothesis from section 2.1 or the new hypothesis made specifically for this section? The instructions for the project do not make this clear. As such, might be safe to test both. 
-
-Hypothesis 1: Is there a linear relationship between the screen_time_before_sleep and the number of sleep hours gotten? 
-$H_0: \beta_1 = 0$
-$H_A: \beta_1 \neq 0$
-
-Check Requirements
-#Is Normal (Normal Distribution) 
---- No, as per the QQ plot of the model below, the points of the residuals tail off of the red line at either end, showing instead a non linear relationship, which is not something a normal distribution would do
-#Is Linear
---- Technically no, as per the QQ plot, the relationship is non linear
-#Is n > 30, yes, as the N is 1200
-#Is Independent
---- This is assumed given the dataset. 
+Since 0 is in the 95% confidence interval, we fail to reject the NULL hypothesis. There is insufficient evidence using 95% confidence interval to conclude that the mean difference between male and female teenager sleeping hours is less then 0.
 
 
 
+Research Question: Is there a difference in mean sleep hours between male and female teens?
+
+There is a difference in the mean sleep hours between male and female teenagers. However, the difference is only 0.091695 hours (approximately 5.5 minutes), which is practically negligible. This extremely small difference explains why we failed to reject H0H_0
+H0. While a numerical difference exists, it is not statistically significant at $\alpha$ = 0.05.
 ```{r}
-
-
-model = lm(screen_time_before_sleep ~ sleep_hours, data = DATA)
-
-#coef(model)
-summary(model)
-
+DATA_male %>% summarise(mean_sleep = mean(sleep_hours)) #6.404715
+DATA_female %>% summarise(mean_sleep = mean(sleep_hours)) #6.49641
 ```
 
 
+---
+
+# Heading 6: Simple Linear Regression
+
+## a) Variables
+
+Quantitative Variable 1: **sleep_hours**
+
+Quantitative Variable 2: **screen_time_before_sleep**
+
+---
+
+## b) Hypothesis Tests
+
+Hypothesis 1: Is there a linear relationship between the screen_time_before_sleep and the number of sleep hours gotten?
+
+$H_0: \beta_1 = 0$
+
+$H_A: \beta_1 \neq 0$
+
+**Checking Requirements:**
+
+i) Is Normal - No, as per the QQ plot of the model below, the points of the residuals tail off of the red line at either end, showing instead a non linear relationship, which is not something a normal distribution would do.
+
+ii) Is Linear - Technically no, as per the QQ plot, the relationship is non linear.
+
+iii) Is n > 30 - Yes, as the N is 1200.
+
+iv) Is Independent - This is assumed given the dataset.
+
+```{r}
+model = lm(screen_time_before_sleep ~ sleep_hours, data = DATA)
+summary(model)
+```
+
 P-value: 0.7232
 
-Decision: The P-value of 0.7232 is greater than alpha level of $\alpha = 0.05$. Also, the Adjusted R-squared is near zero, showing only a little of variance is a result of the dependent variable. Thus we fail to reject the null hypothesis
+Decision: The P-value of 0.7232 is greater than alpha level of $\alpha = 0.05$. Also, the Adjusted R-squared is near zero, showing only a little of variance is a result of the dependent variable. Thus we fail to reject the null hypothesis.
 
-Conclusion: Given the P-value of 0.7232 is greater than alpha level $\alpha = 0.05$, we fail to reject the null hypothesis as there is insufficient evidence that there is a linear relationship between the quantitative variables of screen time before sleep and sleep hours obtained. 
+Conclusion: Given the P-value of 0.7232 is greater than alpha level $\alpha = 0.05$, we fail to reject the null hypothesis as there is insufficient evidence that there is a linear relationship between the quantitative variables of screen time before sleep and sleep hours obtained.
 
-
-#Plotting the Model for Screen time before sleep and sleep hours
 ```{r}
-#plot(model, which = 2)
+ggplot(DATA, aes(x = sleep_hours, y = screen_time_before_sleep)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", color = "red") +
+  labs(title = "Screen Time Before Sleep vs Sleep Hours",
+       x = "Sleep Hours",
+       y = "Screen Time Before Sleep")
+```
 
+```{r}
 ggplot(model, aes(sample = resid(model))) +
   stat_qq() +
   stat_qq_line(color = "red") + 
   labs(title = "Normal Q-Q Plot of Residuals", 
        x = "Theoretical Quantiles", 
        y = "Sample Residuals")
-
-
 ```
 
-Clearly, based on the Normal QQ Plot of the residuals, we can see that the linear regression model underfits the data as the relationship of the data is non-linear. Rather, the relationship resembles that of a sigmoid function. 
+Clearly, based on the Normal QQ Plot of the residuals, we can see that the linear regression model underfits the data as the relationship of the data is non-linear. Rather, the relationship resembles that of a sigmoid function.
 
-
-
-#Does the linear relationship vary by gender? 
-Hypothesis 2: Is there a linear relationship between the screen_time_before_sleep and the number of sleep hours gotten for females only? 
+Hypothesis 2: Is there a linear relationship between the screen_time_before_sleep and the number of sleep hours gotten for females only?
 
 $H_0: \beta_f = 0$
+
 $H_A: \beta_f \neq 0$
 
-Check Requirements
-#Is Normal (Normal Distribution) 
---- No, as per the QQ plot of the model below, the points of the residuals tail off of the red line at either end, showing instead a non linear relationship, which is not something a normal distribution would do
-#Is Linear
---- Technically no, as per the QQ plot, the relationship is non linear
-#Is n > 30, yes, as the N is 585 females
-#Is Independent
---- This is assumed given the dataset. 
+**Checking Requirements:**
 
+i) Is Normal - No, as per the QQ plot of the model below, the points of the residuals tail off of the red line at either end, showing instead a non linear relationship, which is not something a normal distribution would do.
+
+ii) Is Linear - Technically no, as per the QQ plot, the relationship is non linear.
+
+iii) Is n > 30 - Yes, as the N is 585 females.
+
+iv) Is Independent - This is assumed given the dataset.
 
 ```{r}
-
-#Does it vary by gender? 
 fem <- DATA %>% filter(gender == "female")
 model_fem = lm(screen_time_before_sleep ~ sleep_hours, data = fem)
 summary(model_fem)
-
-
-
-
 ```
 
 P-value: 0.3316
 
-Conclusion: P-value of 0.3316 is greater than alpha level $\alpha = 0.05$. Therefore, we fail to reject the null hypothesis as there is insufficient evidence that there is a linear relationship between the quantitative variables of screen time before sleep and sleep hours obtained for only females. 
+Conclusion: P-value of 0.3316 is greater than alpha level $\alpha = 0.05$. Therefore, we fail to reject the null hypothesis as there is insufficient evidence that there is a linear relationship between the quantitative variables of screen time before sleep and sleep hours obtained for only females.
 
-
-
-Hypothesis 3: Is there a linear relationship between the screen_time_before_sleep and the number of sleep hours gotten for males only? 
-
-$H_0: \beta_m = 0$
-$H_A: \beta_m \neq 0$
-
-
-
-Check Requirements
-#Is Normal (Normal Distribution) 
---- No, as per the QQ plot of the model below, the points of the residuals tail off of the red line at either end, showing instead a non linear relationship, which is not something a normal distribution would do
-#Is Linear
---- Technically no, as per the QQ plot, the relationship is non linear
-#Is n > 30, yes, as the N is 615 males
-#Is Independent
---- This is assumed given the dataset. 
-
-#Plotting the Female Model for Screen time before sleep and sleep hours
 ```{r}
-
-
 ggplot(model_fem, aes(sample = resid(model_fem))) +
   stat_qq() +
   stat_qq_line(color = "red") + 
-  labs(title = "Normal Q-Q Plot of Residuals", 
+  labs(title = "Normal Q-Q Plot of Residuals (Females)", 
        x = "Theoretical Quantiles", 
        y = "Sample Residuals")
-
-
 ```
 
+Again, just like with the first model, the linear regression model underfits the female data, showing that sleep hours and screen time are in a sigmoid relationship instead.
 
-Again, just like with the first model, the linear regression model underfits the female data, showing that sleep hours and screen time are in a sigmoid relationship instead. 
+Hypothesis 3: Is there a linear relationship between the screen_time_before_sleep and the number of sleep hours gotten for males only?
 
+$H_0: \beta_m = 0$
+
+$H_A: \beta_m \neq 0$
+
+**Checking Requirements:**
+
+i) Is Normal - No, as per the QQ plot of the model below, the points of the residuals tail off of the red line at either end, showing instead a non linear relationship, which is not something a normal distribution would do.
+
+ii) Is Linear - Technically no, as per the QQ plot, the relationship is non linear.
+
+iii) Is n > 30 - Yes, as the N is 615 males.
+
+iv) Is Independent - This is assumed given the dataset.
 
 ```{r}
 male <- DATA %>% filter(gender == "male")
@@ -759,111 +708,93 @@ model_male = lm(screen_time_before_sleep ~ sleep_hours, data = male)
 summary(model_male)
 ```
 
-
 P-value: 0.1857
 
 Conclusion: The P-value of 0.1857 is greater than alpha level $\alpha = 0.05$. Thus, we fail to reject the null hypothesis as there is insufficient evidence that there is a linear relationship between the quantitative variables of screen time before sleep and sleep hours obtained for males only.
 
-
-
-#Plotting the Male Model for Screen time before sleep and sleep hours
 ```{r}
-
-
 ggplot(model_male, aes(sample = resid(model_male))) +
   stat_qq() +
   stat_qq_line(color = "red") + 
-  labs(title = "Normal Q-Q Plot of Residuals", 
+  labs(title = "Normal Q-Q Plot of Residuals (Males)", 
        x = "Theoretical Quantiles", 
        y = "Sample Residuals")
-
-
 ```
 
-Again, just like with the first and female models, the linear regression model underfits the male data too. Once again, we see sleep hours and screen time are in a sigmoid relationship instead. 
+Again, just like with the first and female models, the linear regression model underfits the male data too. Once again, we see sleep hours and screen time are in a sigmoid relationship instead.
 
-
-
-
-Section 6 Discussion: 
+## Section 6 Discussion
 
 Based on the fact that we failed to reject the null hypothesis that there not is a linear relationship between screen time before sleep and sleep hours for both genders, just females, and just males. There is insufficient evidence to prove to say there is a linear relationship between our two quantitative variables. However, the QQ plots indicate that instead the relationship is non-linear, most likely a sigmoid function.
 
+---
 
+# Heading 7: Report
 
-## -------------------------------------------------------------
-## Heading 7
-## -------------------------------------------------------------
+## Summary of Findings
 
-#### 1. One sample confidence interval for the population proportion from the variable selected in Section 1.1.
+**1. One sample confidence interval for the population proportion from the variable selected in Section 1.1.**
 
 Construct a 98% confidence interval for the proportion of teens who are female.
 
 Answer: We are 98% confident that the true proportion of female teenagers in the population is between 43.95% and 53.55%.
 
-
-------------------------------------------------------------------------------
-
-#### 2. One sample confidence interval for the population mean from the variable selected in Section 1.2.
+**2. One sample confidence interval for the population mean from the variable selected in Section 1.2.**
 
 Construct a 99% confidence interval for the mean sleep hours of teens.
 
 Answer: We are 99% confident that the true mean sleep hours for teenagers is between 6.342 and 6.557 hours per night.
 
-------------------------------------------------------------------------------
+**3. Formulate a research question to conduct a one-sample proportion hypothesis test based on the variable from Section 1.1.**
 
-#### 3. Formulate a research question to conduct a one-sample proportion hypothesis test based on the variable from Section 1.1.
-
-**Research Question:** Is the proportion of female teens in the population different from 50%?
+Research Question: Is the proportion of female teens in the population less than 50%?
 
 $H_0: p = 0.50$
 
 $H_A: p < 0.50$
 
-Answer: There is insufficient evidence at α = 0.05 to conclude that the proportion of female teenagers is less than 50%.
+Answer: There is insufficient evidence at $\alpha$ = 0.05 to conclude that the proportion of female teenagers is less than 50%.
 
-------------------------------------------------------------------------------
+**4. Formulate a research question to conduct a one sample t test hypothesis test based on the variable in Section 1.2.**
 
-#### 4. Formulate a research question to conduct a one sample t test hypothesis test based on the variable in Section 1.2.
-
-**Research Question:** Do teens get less than the recommended 8 hours of sleep?
+Research Question: Do teens get less than the recommended 8 hours of sleep?
 
 $H_0: \mu = 8$
 
 $H_A: \mu < 8$
 
-Answer: There is sufficient evidence at α = 0.05 to conclude that teenagers sleep less than the CDC recommended 8 hours per night.
+Answer: There is sufficient evidence at $\alpha$ = 0.05 to conclude that teenagers sleep less than the CDC recommended 8 hours per night.
 
-------------------------------------------------------------------------------
+**5. Create a research question to do two sample mean (independent t test) hypothesis tests.**
 
-#### 5. Create a research question to do two sample mean (independent t test) hypothesis tests.
-
-**Research Question:** Is there a difference in mean sleep hours between male and female teens?
+Research Question: Is there a difference in mean sleep hours between male and female teens?
 
 $H_0: \mu_1 - \mu_2 = 0$ (no difference in mean sleep hours between males and females)
 
 $H_A: \mu_1 - \mu_2 \neq 0$ (there is a difference in mean sleep hours between males and females)
 
-Answer: There is insufficient evidence at α = 0.05 to conclude that there is a difference in mean sleep hours between male and female teenagers.
+Answer: There is insufficient evidence at $\alpha$ = 0.05 to conclude that there is a difference in mean sleep hours between male and female teenagers.
 
-------------------------------------------------------------------------------
+**6. Use two quantitative variables to show if there is a linear relationship between them.**
 
-#### 6. Use two quantitative variables to show if there is a linear relationship between them.
-
-**Research Question:** Is there a linear relationship between screen time before sleep and sleep hours?
+Research Question: Is there a linear relationship between screen time before sleep and sleep hours?
 
 $H_0: \beta_1 = 0$
+
 $H_A: \beta_1 \neq 0$
 
-Answer: There is insufficient evidence at α = 0.05 to conclude that there is a linear relationship between screen time before sleep and sleep hours. However, the QQ plots display a non-linear relationship between screen time before sleep and sleep hours, most likely a sigmoid function based on shape, but further testing would be required to determine that. 
+Answer: There is insufficient evidence at $\alpha$ = 0.05 to conclude that there is a linear relationship between screen time before sleep and sleep hours. However, the QQ plots display a non-linear relationship between screen time before sleep and sleep hours, most likely a sigmoid function based on shape, but further testing would be required to determine that.
 
+## Overall Conclusion
+The reason for this analysis was to look into whether screen time before sleep affects sleep hours among teenagers, and where this relationship differs by gender. We used a Dataset consisting of 1200 observations to conduct a series of statistical analyses to answer this question.
 
+First, we identified the gender makeup of the dataset. We are 98% confident that the true proportion of female teenagers in the population is between 43.95% and 53.55%. There was insufficient evidence at $\alpha$ = 0.05 to conclude that the proportion of female teenagers is less than 50%, suggesting the gender split in this dataset is roughly even.
 
+Then, we examined teen sleep habits. We are 99% confident that the true mean sleep hours for teenagers is between 6.342 and 6.557 hours. There is sufficient evidence at $\alpha$ = 0.05 to conclude that teenagers sleep less than the CDC recommended 8 hours, indicating that teens are not getting enough sleep.
 
+When comparing sleep hours between genders, there was insufficient evidence at $\alpha$ = 0.05 to conclude that there is a difference in mean sleep hours between male and female teenagers.
 
+Finally, regarding the core research question, there was insufficient evidence at $\alpha$ = 0.05 to conclude that there is a linear relationship between screen time before sleep and sleep hours. This finding was consistent across all teenagers, females only, and males only. 
 
-
-
-
-
+In conclusion, while our analysis confirms that teenagers are not getting enough sleep, we were unable to identify screen time before sleep as a statistically significant cause based on this dataset.
 

@@ -521,7 +521,7 @@ b) Sample is 1200 teenagers
 #Section 4.1
 a) The variable is daily hours of sleep which is Quantitative
 b) Parameter is mean number of hours asleep
-c) Independent
+c) X_bar - Mean
 d) Point Estimate is 6.449417
    Lower = 6.341972 and Upper = 6.556862
 ```{r}
@@ -540,7 +540,7 @@ There is sufficient evidence at $\alpha$ = 0.05 to conclude that the mean hours 
 #Section 4.2
 a) The variable is gender which is Qualitative
 b) Parameter is the proportions of female teenagers
-c) Independent
+c) P - Proportion
 d) Point Estimate is 48.75% 
    Lower = 43.95% and Upper = 53.55%
 ```{r}
@@ -581,7 +581,7 @@ b) Sample 1 = 615 male teenagers
 c) Time asleep and gender, Time Asleep is Quantitative while Gender is Qualitative
 d) Parameter 1 = $\mu_1$ = mean time asleep for males
    Parameter 2 = $\mu_2$ = mean time asleep for females
-e) They are both independent
+e) mu_1 and mu_2 which stand in for the mean
 ```{r}
 DATA_male <- DATA %>% filter(gender == "male")
 DATA_female <- DATA %>% filter(gender == "female")

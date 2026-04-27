@@ -522,6 +522,13 @@ b) Sample is 1200 teenagers
 a) The variable is daily hours of sleep which is Quantitative
 b) Parameter is mean number of hours asleep
 c) X_bar - Mean
+
+#Checking Requirments
+i) n <= 0.05N  - *True*
+ii) Simple random sample - *Assumed, True*
+iii) n >= 30 or X ~ Normal - *1200 is >= 30*
+#Checking Requirments
+
 d) Point Estimate is 6.449417
    Lower = 6.341972 and Upper = 6.556862
 ```{r}
@@ -541,6 +548,16 @@ There is sufficient evidence at $\alpha$ = 0.05 to conclude that the mean hours 
 a) The variable is gender which is Qualitative
 b) Parameter is the proportions of female teenagers
 c) P - Proportion
+
+#Checking Requirments
+i) n <= 0.05N  - *True*
+ii) Simple random sample - *Assumed, True*
+iii)  n * p(1-p) >= 10 or X ~ Normal - *299.8125 is >= 10*
+```{r}
+1200 * (585/1200) * (1-(585/1200))
+```
+#Checking Requirments
+
 d) Point Estimate is 48.75% 
    Lower = 43.95% and Upper = 53.55%
 ```{r}
@@ -574,6 +591,13 @@ Test female vs male sleep hours
 #Section 5.1
 
 We want to test if the time asleep for males is largely different time spent asleep for females. We will be testing this at the 95% confidence level with $\mu_1 - \mu_2$ representing the difference. from male sleeping to female sleeping.
+
+#Checking Requirments
+i) n1 <= 0.05N1 and n2 <= 0.05N2 - *True*
+ii) Simple random samples - *Assumed, True*
+iii) n1 >= 30 and n2 >= 30 or X ~ Normal and Y ~ Normal - *1200 is >= 30*
+#Checking Requirments
+
 a) Population 1 = all male teenagers
    Population 2 = all female teenagers
 b) Sample 1 = 615 male teenagers
